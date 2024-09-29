@@ -1,5 +1,3 @@
-# print("Hello World")
-
 number = 4652
 
 n1 = number // 1000
