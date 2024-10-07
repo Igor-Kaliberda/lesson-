@@ -1,23 +1,15 @@
-kalk = int(input("1. +\n2. -\n3. *\n4. /"))
 
-if kalk == 1:
-    n1 = int(input("Enter 1 number "))
-    n2 = int(input("Enter 2 number "))
-    n3 = n1 + n2
-    print(n3)
-elif kalk == 2:
-    n1 = int(input("Enter 1 number "))
-    n2 = int(input("Enter 2 number "))
-    n3 = n1 - n2
-    print(n3)
-elif kalk == 3:
-    n1 = int(input("Enter 1 number "))
-    n2 = int(input("Enter 2 number "))
-    n3 = n1 * n2
-    print(n3)
-elif kalk == 4:
-    n1 = int(input("Enter 1 number "))
-    n2 = int(input("Enter 2 number "))
-    n3 = n1 / n2
-    print(n3)
 
+numbers = [1, 5, 6, 6, 0, 0, 2, 0]
+numbers.sort(key=bool, reverse=True)
+print(numbers)
+
+
+
+numbers = [0]
+numbers.sort(key=bool, reverse=True)
+print(numbers)
+
+numbers = [0, 2, 6, 5, 3, 0, 0, 6, 0, 0, 0, 0, 6, 5, 3 ]
+numbers.sort(key=bool, reverse=True)
+print(numbers)
