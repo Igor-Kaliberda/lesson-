@@ -8,12 +8,6 @@ def Text_words(text, words):
     word_count = {word: 0 for word in words}
     for word in words:
         word_count[word] = word_list.count(word)
-
-    return word_count
-
-
-
-
-
+        return word_count
 
 print(Text_words(text, words))
