@@ -1,10 +1,10 @@
 
+def common_elements():
+    list1 = list(range(0, 100, 2))
+    list2 = list(range(0, 100, 5))
+    common = [element for element in list1 if element in list2]
 
-while True:
-    a = int(input("Enter number "))
-    i = 0
-    if i >= 9:
-     i = int(f"{a%10}, {a//10}")
-     print(i)
-     i = +1
+    return common
 
+
+print(common_elements())
