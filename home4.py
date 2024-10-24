@@ -1,23 +1,13 @@
-spisok1 = "hello, world"
-spisok2 = "good bue, world"
+def hello(name: str, age: int) -> str:
+    if not isinstance(name, str):
+        raise ValueError("Name must be a string")
+
+    if not isinstance(age, int) or age <= 0:
+        raise ValueError("Age must be a positive integer")
+
+    return f"Hi. My name is {name} and I am {age} years old."
 
 
-def correct_spisok(spisok1, spisok2):
-    def correct_noviy_spisok(spisok):
-        if not spisok:
-            return spisok
-        sentence = spisok[0].upper() + spisok[1:]
-        if not sentence.endswith('.'):
-            sentence += '.'
-        return sentence
 
-    corrected_sentence1 = correct_noviy_spisok(spisok1)
-    corrected_sentence2 = correct_noviy_spisok(spisok2)
-
-    return corrected_sentence1, corrected_sentence2
-
-
-corrected_spisok1, corrected_spisok2 = correct_spisok(spisok1, spisok2)
-
-print(corrected_spisok1)
-print(corrected_spisok2)
+print(hello("Stiv", 30))
+print(hello("Hella", 25))
