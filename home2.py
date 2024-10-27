@@ -1,10 +1,19 @@
+import re
+from re import match
 
-def common_elements():
-    list1 = list(range(0, 100, 2))
-    list2 = list(range(0, 100, 5))
-    common = [element for element in list1 if element in list2]
+text = "Hello, world!"
+def first_word(text):
 
-    return common
+    text = text.lstrip(' .,')
 
 
-print(common_elements())
+    match = re.search(r'\b\w[\w\']*\b', text)
+    if match:
+        return match.group(0)
+    return ""
+
+
+
+
+print(first_word(text))
+
