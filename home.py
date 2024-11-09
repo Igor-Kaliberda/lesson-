@@ -1,21 +1,10 @@
-import string
+def is_even(number):
+    return (number & 1) == 0
 
-ALL_LETTERS = string.ascii_letters
-SEPARATOR = "-"
 
-user_input = input("Enter letters in format: 'a-c' ").strip()
 
-if len(user_input) == 3:
-    first_letter = user_input[0]
-    second_letter = user_input[2]
-    separator = user_input[1]
+assert is_even(2494563894038 ** 2) == True, 'Test1'
+assert is_even(1056897 ** 2) == False, 'Test2'
+assert is_even(24945638940387 ** 3) == False, 'Test3'
 
-    if first_letter.isalpha() and second_letter.isalpha() and separator == SEPARATOR:
-        start_index = ALL_LETTERS.index(first_letter)
-        end_index = ALL_LETTERS.index(second_letter)
-
-        if start_index > end_index:
-            start_index, end_index = end_index, start_index
-
-        result = ALL_LETTERS[start_index:end_index + 1]
-        print(result)
+print("test incorrect")
