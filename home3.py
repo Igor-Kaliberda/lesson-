@@ -1,15 +1,78 @@
-def generate_cube_numbers(end):
-    num = 2
-    while num ** 3 <= end:
-        yield num ** 3
-        num += 1
+import math
 
-from inspect import isgenerator
 
-gen = generate_cube_numbers(1)
-assert isgenerator(gen) == True, 'Test0'
-assert list(generate_cube_numbers(10)) == [8], 'оскільки воно менше 10.'
-assert list(generate_cube_numbers(100)) == [8, 27, 64], '5 у кубі це 125, а воно вже більше 100'
-assert list(generate_cube_numbers(1000)) == [8, 27, 64, 125, 216, 343, 512, 729, 1000], '10 у кубі це 1000'
+class Fraction:
+    def __init__(self, a, b):
+        if b == 0:
+            raise ValueError("Denominator cannot be zero.")
+        self.a = a
+        self.b = b
+        self.simplify()
 
-print("Great!")
+    def simplify(self):
+        gcd = math.gcd(self.a, self.b)
+        self.a //= gcd
+        self.b //= gcd
+
+    def __mul__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+        new_a = self.a * other.a
+        new_b = self.b * other.b
+        result = Fraction(new_a, new_b)
+        result.simplify()
+        return result
+
+    def __add__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+        new_a = self.a * other.b + other.a * self.b
+        new_b = self.b * other.b
+        result = Fraction(new_a, new_b)
+        result.simplify()
+        return result
+
+    def __sub__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+        new_a = self.a * other.b - other.a * self.b
+        new_b = self.b * other.b
+        result = Fraction(new_a, new_b)
+        result.simplify()
+        return result
+
+    def __eq__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+        return self.a * other.b == self.b * other.a
+
+    def __gt__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+        return self.a * other.b > self.b * other.a
+
+    def __lt__(self, other):
+        if not isinstance(other, Fraction):
+            return NotImplemented
+        return self.a * other.b < self.b * other.a
+
+    def __str__(self):
+        return f"Fraction: {self.a}, {self.b}"
+
+
+f_a = Fraction(2, 3)
+f_b = Fraction(3, 6)
+f_c = f_b + f_a
+assert str(f_c) == 'Fraction: 21, 18', str(f_c)
+f_d = f_b * f_a
+assert str(f_d) == 'Fraction: 6, 18', str(f_d)
+f_e = f_a - f_b
+assert str(f_e) == 'Fraction: 3, 18', str(f_e)
+
+assert f_d < f_c
+assert f_d > f_e
+assert f_a != f_b
+f_1 = Fraction(2, 4)
+f_2 = Fraction(3, 6)
+assert f_1 == f_2
+print('OK')
