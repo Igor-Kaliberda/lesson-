@@ -1,49 +1,46 @@
-class Product:
-    def __init__(self, name, price, description, dimensions):
-        self.name = name
-        self.price = price
-        self.description = description
-        self.dimensions = dimensions
+class Rectangle:
+
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def get_square(self):
+        return self.width * self.height
+
+    def __eq__(self, other):
+        if not isinstance(other, Rectangle):
+            return False
+        return self.get_square() == other.get_square()
+
+    def __add__(self, other):
+        if not isinstance(other, Rectangle):
+            return NotImplemented
+        new_width = self.width + other.width
+        new_height = self.height + other.height
+        return Rectangle(new_width, new_height)
+
+    def __mul__(self, n):
+        if not isinstance(n, (int, float)):
+            return NotImplemented
+        new_width = self.width * n
+        new_height = self.height * n
+        return Rectangle(new_width, new_height)
 
     def __str__(self):
-        return f"Product(name={self.name}, price={self.price}, description={self.description}, dimensions={self.dimensions})"
+        return f'Rectangle(width={self.width}, height={self.height})'
 
 
+# Приклади використання:
+r1 = Rectangle(2, 4)
+r2 = Rectangle(3, 6)
 
-class Customer:
-    def __init__(self, last_name, first_name, middle_name, phone):
-        self.last_name = last_name
-        self.first_name = first_name
-        self.middle_name = middle_name
-        self.phone = phone
+assert r1.get_square() == 8, 'Test1'
+assert r2.get_square() == 18, 'Test2'
 
-    def __str__(self):
-        return f"Customer(last_name={self.last_name}, first_name={self.first_name}, middle_name={self.middle_name}, phone={self.phone})"
+r3 = r1 + r2
+assert r3.get_square() == 26, 'Test3'
 
+r4 = r1 * 4
+assert r4.get_square() == 32, 'Test4'
 
-
-class Order:
-    def __init__(self, customer):
-        self.customer = customer
-        self.items = []
-
-    def add_product(self, product, quantity):
-        self.items.append((product, quantity))
-
-    def total_cost(self):
-        return sum(product.price * quantity for product, quantity in self.items)
-
-    def __str__(self):
-        items_str = "\n".join([f"{product} x {quantity}" for product, quantity in self.items])
-        return f"Order for {self.customer}:\n{items_str}\nTotal cost: {self.total_cost()}"
-
-product1 = Product("Apple", 1, "Fresh red apple", "10x10x10 cm")
-product2 = Product("Banana", 0.5, "Ripe yellow banana", "15x3x3 cm")
-customer1 = Customer("Shevchenko", "Taras", "Hryhorovych", "+380501234567")
-
-
-order1 = Order(customer1)
-order1.add_product(product1, 5)
-order1.add_product(product2, 10)
-
-print(order1)
+assert Rectangle(3, 6) == Rectangle(2, 9), 'Test5'
